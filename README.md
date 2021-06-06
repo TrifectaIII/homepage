@@ -1,4 +1,4 @@
-A personalized starting point using the following tools:
+My personal homepage.
 
 [Create React App](https://github.com/facebook/create-react-app)
 

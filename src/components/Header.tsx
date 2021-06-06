@@ -201,7 +201,7 @@ const Header = (props: {}): JSX.Element => {
                 >
                     <Button className={classes.navButton}>
                         <Typography variant='h5'>
-                            Placeholder
+                            Dakota Madden-Fong
                         </Typography>
                     </Button>
                 </Link>
