@@ -5,13 +5,11 @@ import {
 } from '@reduxjs/toolkit';
 
 import globalReducer from './globalSlice';
-import counterReducer from './counterSlice';
 
 // Store containing all state slices
 export const store = configureStore({
     reducer: {
         global: globalReducer,
-        counter: counterReducer,
     },
 });
 

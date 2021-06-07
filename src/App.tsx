@@ -14,7 +14,6 @@ import {
 } from '@material-ui/core';
 
 import Main from './pages/MainPage';
-import Counter from './pages/CounterPage';
 import NotFound from './pages/NotFoundPage';
 import Header from './components/Header';
 import MenuDrawer from './components/MenuDrawer';
@@ -74,11 +73,6 @@ const App = (): JSX.Element => {
                         <Route
                             exact path='/'
                             component={Main}
-                        />
-                        {/* counter app */}
-                        <Route
-                            path='/counter'
-                            component={Counter}
                         />
                         {/* default to 404 */}
                         <Route component={NotFound} />

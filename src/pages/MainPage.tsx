@@ -4,16 +4,9 @@ import {
 } from 'react-router-dom';
 
 import {
-    Button,
-    ButtonGroup,
-    Typography,
     Box,
     makeStyles,
 } from '@material-ui/core';
-import {
-    Apps as AppsIcon,
-    Error as ErrorIcon,
-} from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -36,30 +29,7 @@ const MainPage = (props: RouteComponentProps<{}>): JSX.Element => {
             flexDirection='column'
             className={classes.root}
         >
-            <Typography
-                variant='h2'
-                align='center'
-            >
-                React-Reduxtk-Router-Mui-TS Template
-            </Typography>
-            <ButtonGroup
-                variant='contained'
-                className={classes.buttons}
-            >
-                {/* buttons which function as links */}
-                <Button
-                    onClick={() => props.history.push('/counter')}
-                    color='primary'
-                >
-                    <AppsIcon />Counter App
-                </Button>
-                <Button
-                    onClick={() => props.history.push('/nonexistent')}
-                    color='secondary'
-                >
-                    <ErrorIcon />Test 404 Page
-                </Button>
-            </ButtonGroup>
+
         </Box>
     );
 
