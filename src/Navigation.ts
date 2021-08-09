@@ -1,7 +1,8 @@
 import {SvgIconTypeMap} from '@material-ui/core';
 import {OverridableComponent} from '@material-ui/core/OverridableComponent';
 import {
-
+    MailOutline,
+    FolderOpen,
 } from '@material-ui/icons';
 
 // Type to determine navigation options on header
@@ -22,5 +23,12 @@ export interface NavMapType {
 
 // navmap for this app
 export const navMap: NavMapType = {
-
+    'Portfolio': {
+        icon: FolderOpen,
+        route: '/portfolio',
+    },
+    'Contact Info': {
+        icon: MailOutline,
+        route: '/contact-info',
+    },
 };

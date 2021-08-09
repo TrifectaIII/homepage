@@ -9,12 +9,14 @@ import {
     Container,
     CssBaseline,
     ThemeProvider,
-    createMuiTheme,
+    createTheme,
     ThemeOptions,
 } from '@material-ui/core';
 
 import Main from './pages/MainPage';
 import NotFound from './pages/NotFoundPage';
+import Portfolio from './pages/PortfolioPage';
+import Contact from './pages/ContactPage';
 import Header from './components/Header';
 import MenuDrawer from './components/MenuDrawer';
 import {useAppSelector} from './state/hooks';
@@ -50,8 +52,8 @@ const App = (): JSX.Element => {
 
     // choose theme based on state
     const darkMode = useAppSelector(selectDarkMode);
-    const lightTheme = createMuiTheme(lightThemeOptions);
-    const darkTheme = createMuiTheme(darkThemeOptions);
+    const lightTheme = createTheme(lightThemeOptions);
+    const darkTheme = createTheme(darkThemeOptions);
     const theme = darkMode ? darkTheme : lightTheme;
 
     return (
@@ -73,6 +75,18 @@ const App = (): JSX.Element => {
                         <Route
                             exact path='/'
                             component={Main}
+                        />
+                        <Route
+                            exact path='/'
+                            component={Main}
+                        />
+                        <Route
+                            exact path='/portfolio'
+                            component={Portfolio}
+                        />
+                        <Route
+                            exact path='/contact-info'
+                            component={Contact}
                         />
                         {/* default to 404 */}
                         <Route component={NotFound} />
