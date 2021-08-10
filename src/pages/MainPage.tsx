@@ -7,12 +7,21 @@ import {
     Box,
     Typography,
     Divider,
+    Button,
+    ButtonGroup,
     makeStyles,
-    Link as MuiLink,
 } from '@material-ui/core';
+import {
+    MailOutline,
+    FolderOpen,
+    InsertDriveFileOutlined,
+} from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        marginTop: '3rem',
+    },
+    text: {
         marginTop: '3rem',
     },
     buttons: {
@@ -22,9 +31,12 @@ const useStyles = makeStyles((theme) => ({
         width: '50%',
         margin: '10px',
     },
+    icon: {
+        marginRight: '0.5rem',
+    },
 }));
 
-import resume from '../tex/resume.pdf';
+import resume from '../tex/dakotamaddenfong_resume.pdf';
 
 // main index page for empty route
 const MainPage = (props: RouteComponentProps<{}>): JSX.Element => {
@@ -49,16 +61,38 @@ const MainPage = (props: RouteComponentProps<{}>): JSX.Element => {
                 TrifectaIII
             </Typography>
 
-            <Typography variant='body1'>
+            <Typography
+                variant='body1'
+                className={classes.text}
+            >
                 A coder living and working in San Francisco, CA.
                 I focus on software and web development.
             </Typography>
 
-            <Typography variant='body1'>
-                <MuiLink href={resume}>
-                    Resume
-                </MuiLink>
-            </Typography>
+            <ButtonGroup
+                orientation='vertical'
+                className={classes.buttons}
+                variant='contained'
+            >
+                <Button
+                    href={resume}
+                    color='secondary'
+                >
+                    <InsertDriveFileOutlined className={classes.icon} /> Resume
+                </Button>
+                <Button
+                    onClick={() => props.history.push('/portfolio')}
+                    color='primary'
+                >
+                    <FolderOpen className={classes.icon} />  Portfolio
+                </Button>
+                <Button
+                    onClick={() => props.history.push('/contact-info')}
+                    color='secondary'
+                >
+                    <MailOutline className={classes.icon} />  Contact Info
+                </Button>
+            </ButtonGroup>
         </Box>
     );
 
