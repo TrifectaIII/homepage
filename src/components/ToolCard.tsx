@@ -7,6 +7,7 @@ import {
     CardActionArea,
     IconButton,
     Typography,
+    Grid,
     makeStyles,
 } from '@material-ui/core';
 
@@ -21,9 +22,11 @@ import {
 
 const useStyles = makeStyles((theme) => ({
     root: {
+
+    },
+    card: {
+        height: '100%',
         maxWidth: '100%',
-        width: '20rem',
-        margin: '0.75rem',
     },
 }));
 
@@ -40,26 +43,34 @@ const ToolCard = (props: {
     const classes = useStyles();
 
     return (
-        <Card
+        <Grid
+            item
+            xs={6}
+            md={4}
+            lg={3}
             className={classes.root}
-            raised
         >
-            <CardActionArea href={props.info.link}>
-                <CardContent>
-                    <Typography variant='h5' gutterBottom>
-                        {props.name}
-                    </Typography>
-                    <Typography color='textSecondary'>
-                        {props.info.description}
-                    </Typography>
-                </CardContent>
-            </CardActionArea>
-            <CardActions>
-                <IconButton href={props.info.github}>
-                    <GitHub />
-                </IconButton>
-            </CardActions>
-        </Card>
+            <Card
+                className={classes.card}
+                raised
+            >
+                <CardActionArea href={props.info.link}>
+                    <CardContent>
+                        <Typography variant='h5' gutterBottom>
+                            {props.name}
+                        </Typography>
+                        <Typography color='textSecondary'>
+                            {props.info.description}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <CardActions>
+                    <IconButton href={props.info.github}>
+                        <GitHub />
+                    </IconButton>
+                </CardActions>
+            </Card>
+        </Grid>
     );
 
 };

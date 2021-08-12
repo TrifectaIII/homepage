@@ -6,6 +6,7 @@ import {
 import {
     Box,
     Typography,
+    Grid,
     makeStyles,
 } from '@material-ui/core';
 
@@ -66,15 +67,15 @@ const PortfolioPage = (props: RouteComponentProps<{}>): JSX.Element => {
             <Typography variant='h4'>
                 Tools
             </Typography>
-            <Box>
+            <Grid container spacing={3}>
                 {toolCards}
-            </Box>
+            </Grid>
             <Typography variant='h4'>
                 Projects
             </Typography>
-            <Box>
+            <Grid container spacing={3}>
                 {projectCards}
-            </Box>
+            </Grid>
         </Box>
     );
 
