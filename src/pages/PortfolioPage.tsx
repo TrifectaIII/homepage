@@ -19,6 +19,10 @@ const useStyles = makeStyles((theme) => ({
     root: {
         marginTop: '3rem',
     },
+    subheader: {
+        marginTop: '3rem',
+        marginBottom: '3rem',
+    },
 }));
 
 // Portfolio page showing off other projects
@@ -64,13 +68,19 @@ const PortfolioPage = (props: RouteComponentProps<{}>): JSX.Element => {
             <Typography variant='h2'>
                 Portfolio
             </Typography>
-            <Typography variant='h4'>
+            <Typography
+                variant='h3'
+                className={classes.subheader}
+            >
                 Tools
             </Typography>
             <Grid container spacing={3}>
                 {toolCards}
             </Grid>
-            <Typography variant='h4'>
+            <Typography
+                variant='h3'
+                className={classes.subheader}
+            >
                 Projects
             </Typography>
             <Grid container spacing={3}>

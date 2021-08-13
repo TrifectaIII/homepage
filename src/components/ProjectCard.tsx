@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import {
     Card,
@@ -9,13 +9,27 @@ import {
     IconButton,
     Typography,
     Grid,
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    Slide,
     makeStyles,
+    SlideProps,
 } from '@material-ui/core';
 import {
     GitHub,
 } from '@material-ui/icons';
 
 import projectImages from '../data/project_images';
+
+const Transition = (
+    props: JSX.IntrinsicAttributes & SlideProps,
+    ref: React.Ref<unknown> | undefined,
+) => <Slide direction='up' ref={ref} {...props} />;
+const TransitionComponent = React.forwardRef(Transition);
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -45,10 +59,13 @@ const ProjectCard = (props: {
 
     const classes = useStyles();
 
+    const [infoOpen, setInfoOpen] = useState(false);
+
     return (
         <Grid
             item
-            xs={6}
+            xs={12}
+            sm={6}
             md={4}
             lg={3}
             className={classes.root}
@@ -74,11 +91,22 @@ const ProjectCard = (props: {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
+                    <Button onClick={() => setInfoOpen(true)}>
+                        More Info
+                    </Button>
                     <IconButton href={props.info.github}>
                         <GitHub />
                     </IconButton>
                 </CardActions>
             </Card>
+            <Dialog
+                open={infoOpen}
+                TransitionComponent={TransitionComponent}
+                keepMounted
+                onClose={() => setInfoOpen(false)}
+            >
+                <DialogTitle>{props.name}</DialogTitle>
+            </Dialog>
         </Grid>
     );
 
