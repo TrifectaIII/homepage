@@ -6,37 +6,21 @@ import {
     CardActions,
     CardActionArea,
     CardMedia,
-    IconButton,
     Typography,
     Grid,
     Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-    Slide,
     makeStyles,
-    SlideProps,
 } from '@material-ui/core';
-import {
-    GitHub,
-} from '@material-ui/icons';
 
+import ProjectInfo from './ProjectInfo';
 import projectImages from '../data/project_images';
-
-const Transition = (
-    props: JSX.IntrinsicAttributes & SlideProps,
-    ref: React.Ref<unknown> | undefined,
-) => <Slide direction='up' ref={ref} {...props} />;
-const TransitionComponent = React.forwardRef(Transition);
 
 const useStyles = makeStyles((theme) => ({
     root: {
 
     },
     card: {
-        height: '100%',
+        // height: '100%',
         maxWidth: '100%',
     },
     image: {
@@ -54,7 +38,7 @@ const ProjectCard = (props: {
         techniques: string[],
         description: string,
         image: string,
-    }
+    },
 }): JSX.Element => {
 
     const classes = useStyles();
@@ -75,7 +59,7 @@ const ProjectCard = (props: {
                 raised
             >
                 <CardActionArea
-                    href={props.info.link}
+                    onClick={() => setInfoOpen(true)}
                 >
                     <CardMedia
                         className={classes.image}
@@ -94,19 +78,14 @@ const ProjectCard = (props: {
                     <Button onClick={() => setInfoOpen(true)}>
                         More Info
                     </Button>
-                    <IconButton href={props.info.github}>
-                        <GitHub />
-                    </IconButton>
                 </CardActions>
             </Card>
-            <Dialog
+            <ProjectInfo
                 open={infoOpen}
-                TransitionComponent={TransitionComponent}
-                keepMounted
-                onClose={() => setInfoOpen(false)}
-            >
-                <DialogTitle>{props.name}</DialogTitle>
-            </Dialog>
+                name={props.name}
+                info={props.info}
+                closer={() => setInfoOpen(false)}
+            />
         </Grid>
     );
 
