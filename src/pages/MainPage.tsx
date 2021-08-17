@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 import {
     MailOutline,
+    CallOutlined,
     FolderOpen,
     InsertDriveFileOutlined,
 } from '@material-ui/icons';
@@ -24,8 +25,14 @@ const useStyles = makeStyles((theme) => ({
     text: {
         marginTop: '3rem',
     },
-    buttons: {
+    mainbuttons: {
         marginTop: '3rem',
+    },
+    contactheader: {
+        marginTop: '2rem',
+    },
+    contactbuttons: {
+        marginTop: '1rem',
     },
     divider: {
         width: '50%',
@@ -71,8 +78,9 @@ const MainPage = (props: RouteComponentProps<{}>): JSX.Element => {
 
             <ButtonGroup
                 orientation='vertical'
-                className={classes.buttons}
+                className={classes.mainbuttons}
                 variant='contained'
+                size='large'
             >
                 <Button
                     href={resume}
@@ -86,11 +94,31 @@ const MainPage = (props: RouteComponentProps<{}>): JSX.Element => {
                 >
                     <FolderOpen className={classes.icon} />  Portfolio
                 </Button>
+            </ButtonGroup>
+            <Typography
+                variant='h3'
+                className={classes.contactheader}
+            >
+                Contact Info
+            </Typography>
+            <ButtonGroup
+                orientation='vertical'
+                className={classes.contactbuttons}
+                variant='outlined'
+            >
                 <Button
-                    onClick={() => props.history.push('/contact-info')}
                     color='secondary'
+                    href='mailto:maddenfong@gmail.com'
+                    style={{textTransform: 'none'}}
                 >
-                    <MailOutline className={classes.icon} />  Contact Info
+                    <MailOutline className={classes.icon} /> maddenfong@gmail.com
+                </Button>
+
+                <Button
+                    color='secondary'
+                    href='tel:+1415-810-0334'
+                >
+                    <CallOutlined className={classes.icon} /> +1 (415) 810 - 0334
                 </Button>
             </ButtonGroup>
         </Box>

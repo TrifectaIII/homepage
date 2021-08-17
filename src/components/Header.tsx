@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: 'auto',
     },
     spaceRight: {
-        marginRight: '0.5.rem',
+        marginRight: '0.5rem',
     },
     navButton: {
         color: theme.palette.common.white,

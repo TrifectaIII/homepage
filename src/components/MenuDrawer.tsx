@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 import {
     ArrowRightAlt as InnerIcon,
+    Home,
 } from '@material-ui/icons';
 
 import {navMap} from '../Navigation';
@@ -131,6 +132,19 @@ const MenuDrawer = (props: {}): JSX.Element => {
             >
                 <Box className={classes.root}>
                     <List>
+                        {/* home item */}
+                        <Link
+                            to='/'
+                            className={classes.linkText}
+                            onClick={() => dispatch(closeMenuDrawer())}
+                        >
+                            <ListItem>
+                                <ListItemIcon>
+                                    <Home />
+                                </ListItemIcon>
+                                <ListItemText primary='Home' />
+                            </ListItem>
+                        </Link>
                         {navItems}
                     </List>
                 </Box>

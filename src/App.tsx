@@ -16,7 +16,6 @@ import {
 import Main from './pages/MainPage';
 import NotFound from './pages/NotFoundPage';
 import Portfolio from './pages/PortfolioPage';
-import Contact from './pages/ContactPage';
 import Header from './components/Header';
 import MenuDrawer from './components/MenuDrawer';
 import {useAppSelector} from './state/hooks';
@@ -83,10 +82,6 @@ const App = (): JSX.Element => {
                         <Route
                             exact path='/portfolio'
                             component={Portfolio}
-                        />
-                        <Route
-                            exact path='/contact-info'
-                            component={Contact}
                         />
                         {/* default to 404 */}
                         <Route component={NotFound} />

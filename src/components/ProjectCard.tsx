@@ -75,6 +75,11 @@ const ProjectCard = (props: {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
+                    <Button
+                        href={props.info.link}
+                    >
+                        Visit
+                    </Button>
                     <Button onClick={() => setInfoOpen(true)}>
                         More Info
                     </Button>

@@ -30,20 +30,6 @@ const PortfolioPage = (props: RouteComponentProps<{}>): JSX.Element => {
 
     const classes = useStyles();
 
-    // generate cards for tools
-    const toolCards: JSX.Element[] = [];
-    let toolkey: keyof typeof tools;
-    for (toolkey in tools) {
-
-        if (Object.prototype.hasOwnProperty.call(tools, toolkey)) {
-
-            const toolobj = tools[toolkey];
-            toolCards.push(<ToolCard key={toolkey} name={toolkey} info={toolobj} />);
-
-        }
-
-    }
-
     // generate cards for projects
     const projectCards: JSX.Element[] = [];
     let projectkey: keyof typeof projects;
@@ -53,6 +39,20 @@ const PortfolioPage = (props: RouteComponentProps<{}>): JSX.Element => {
 
             const projectobj = projects[projectkey];
             projectCards.push(<ProjectCard key={projectkey} name={projectkey} info={projectobj} />);
+
+        }
+
+    }
+
+    // generate cards for tools
+    const toolCards: JSX.Element[] = [];
+    let toolkey: keyof typeof tools;
+    for (toolkey in tools) {
+
+        if (Object.prototype.hasOwnProperty.call(tools, toolkey)) {
+
+            const toolobj = tools[toolkey];
+            toolCards.push(<ToolCard key={toolkey} name={toolkey} info={toolobj} />);
 
         }
 
@@ -72,19 +72,19 @@ const PortfolioPage = (props: RouteComponentProps<{}>): JSX.Element => {
                 variant='h3'
                 className={classes.subheader}
             >
-                Tools
+                Projects
             </Typography>
             <Grid container spacing={3}>
-                {toolCards}
+                {projectCards}
             </Grid>
             <Typography
                 variant='h3'
                 className={classes.subheader}
             >
-                Projects
+                Tools
             </Typography>
             <Grid container spacing={3}>
-                {projectCards}
+                {toolCards}
             </Grid>
         </Box>
     );

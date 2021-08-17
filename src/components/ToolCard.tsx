@@ -5,20 +5,18 @@ import {
     CardContent,
     CardActions,
     CardActionArea,
+    Button,
     IconButton,
     Typography,
     Grid,
+    Avatar,
     makeStyles,
 } from '@material-ui/core';
-
 import {
     GitHub,
 } from '@material-ui/icons';
 
-// import {
-//     useAppSelector,
-//     useAppDispatch,
-// } from '../state/hooks';
+import toolLogos from '../data/tool_logos';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -27,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
     card: {
         // height: '100%',
         maxWidth: '100%',
+    },
+    avatar: {
+        marginBottom: '1rem',
     },
 }));
 
@@ -37,6 +38,7 @@ const ToolCard = (props: {
         description: string,
         link: string,
         github: string,
+        logo: string,
     }
 }): JSX.Element => {
 
@@ -57,6 +59,11 @@ const ToolCard = (props: {
             >
                 <CardActionArea href={props.info.link}>
                     <CardContent>
+                        <Avatar
+                            src={toolLogos[props.info.logo]}
+                            variant='rounded'
+                            className={classes.avatar}
+                        />
                         <Typography variant='h5' gutterBottom>
                             {props.name}
                         </Typography>
@@ -66,6 +73,11 @@ const ToolCard = (props: {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
+                    <Button
+                        href={props.info.link}
+                    >
+                        Visit
+                    </Button>
                     <IconButton href={props.info.github}>
                         <GitHub />
                     </IconButton>

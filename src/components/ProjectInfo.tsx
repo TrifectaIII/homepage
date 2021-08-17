@@ -30,9 +30,12 @@ const useStyles = makeStyles((theme) => ({
 
     },
     closeButton: {
-        position: 'absolute',
-        right: theme.spacing(1),
-        top: theme.spacing(1),
+        // position: 'absolute',
+        // right: theme.spacing(1),
+        // top: theme.spacing(1),
+    },
+    visitButton: {
+        marginRight: '1rem',
     },
 }));
 
@@ -83,20 +86,21 @@ const ProjectInfo = (props: {
                     href={props.info.link}
                     color='primary'
                     variant='contained'
+                    className={classes.visitButton}
                 >
                     Visit
                 </Button>
                 <IconButton href={props.info.github}>
                     <GitHub />
                 </IconButton>
+                <IconButton
+                    onClick={props.closer}
+                    color='secondary'
+                    className={classes.closeButton}
+                >
+                    <Close />
+                </IconButton>
             </DialogActions>
-            <IconButton
-                onClick={props.closer}
-                color='secondary'
-                className={classes.closeButton}
-            >
-                <Close />
-            </IconButton>
         </Dialog>
     );
 

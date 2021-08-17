@@ -27,8 +27,4 @@ export const navMap: NavMapType = {
         icon: FolderOpen,
         route: '/portfolio',
     },
-    'Contact Info': {
-        icon: MailOutline,
-        route: '/contact-info',
-    },
 };
