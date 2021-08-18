@@ -16,7 +16,16 @@ import {
     CallOutlined,
     FolderOpen,
     InsertDriveFileOutlined,
+    GitHub,
 } from '@material-ui/icons';
+
+import {
+    useAppSelector,
+} from '../state/hooks';
+import {
+    selectDarkMode,
+} from '../state/globalSlice';
+import CopyButton from '../components/CopyButton';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -43,12 +52,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+import general from '../data/general.json';
 import resume from '../tex/dakotamaddenfong_resume.pdf';
 
 // main index page for empty route
 const MainPage = (props: RouteComponentProps<{}>): JSX.Element => {
 
     const classes = useStyles();
+
+    // access dark mode info
+    const darkMode = useAppSelector(selectDarkMode);
 
     return (
         <Box
@@ -84,15 +97,21 @@ const MainPage = (props: RouteComponentProps<{}>): JSX.Element => {
             >
                 <Button
                     href={resume}
-                    color='secondary'
+                    color='primary'
                 >
                     <InsertDriveFileOutlined className={classes.icon} /> Resume
                 </Button>
                 <Button
                     onClick={() => props.history.push('/portfolio')}
-                    color='primary'
+                    color='secondary'
                 >
                     <FolderOpen className={classes.icon} />  Portfolio
+                </Button>
+                <Button
+                    href={general.github}
+                    color='primary'
+                >
+                    <GitHub className={classes.icon} />  GitHub
                 </Button>
             </ButtonGroup>
             <Typography
@@ -104,22 +123,17 @@ const MainPage = (props: RouteComponentProps<{}>): JSX.Element => {
             <ButtonGroup
                 orientation='vertical'
                 className={classes.contactbuttons}
-                variant='outlined'
+                variant='text'
+                color={darkMode ? 'secondary' : 'primary'}
             >
-                <Button
-                    color='secondary'
-                    href='mailto:maddenfong@gmail.com'
-                    style={{textTransform: 'none'}}
-                >
-                    <MailOutline className={classes.icon} /> maddenfong@gmail.com
-                </Button>
-
-                <Button
-                    color='secondary'
-                    href='tel:+1415-810-0334'
-                >
-                    <CallOutlined className={classes.icon} /> +1 (415) 810 - 0334
-                </Button>
+                <CopyButton
+                    icon={MailOutline}
+                    contents='maddenfong@gmail.com'
+                />
+                <CopyButton
+                    icon={CallOutlined}
+                    contents='+1 415 810 0334'
+                />
             </ButtonGroup>
         </Box>
     );
