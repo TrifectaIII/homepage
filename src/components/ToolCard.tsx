@@ -16,6 +16,7 @@ import {
     GitHub,
 } from '@material-ui/icons';
 
+import general from '../data/general.json';
 import toolLogos from '../data/tool_logos';
 
 const useStyles = makeStyles((theme) => ({
@@ -44,6 +45,8 @@ const ToolCard = (props: {
 
     const classes = useStyles();
 
+    const fullLink = `${general.page}/${props.info.link}`;
+
     return (
         <Grid
             item
@@ -57,7 +60,7 @@ const ToolCard = (props: {
                 className={classes.card}
                 raised
             >
-                <CardActionArea href={props.info.link}>
+                <CardActionArea href={fullLink}>
                     <CardContent>
                         <Avatar
                             src={toolLogos[props.info.logo]}
@@ -74,7 +77,7 @@ const ToolCard = (props: {
                 </CardActionArea>
                 <CardActions>
                     <Button
-                        href={props.info.link}
+                        href={fullLink}
                     >
                         Visit
                     </Button>
