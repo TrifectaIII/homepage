@@ -1,18 +1,26 @@
 {
   "files": {
-    "main.js": "/homepage/static/js/main.fe61bfef.chunk.js",
-    "main.js.map": "/homepage/static/js/main.fe61bfef.chunk.js.map",
+    "main.js": "/homepage/static/js/main.58305059.chunk.js",
+    "main.js.map": "/homepage/static/js/main.58305059.chunk.js.map",
     "runtime-main.js": "/homepage/static/js/runtime-main.2ff6108e.js",
     "runtime-main.js.map": "/homepage/static/js/runtime-main.2ff6108e.js.map",
-    "static/js/2.7ff95781.chunk.js": "/homepage/static/js/2.7ff95781.chunk.js",
-    "static/js/2.7ff95781.chunk.js.map": "/homepage/static/js/2.7ff95781.chunk.js.map",
+    "static/js/2.acb55509.chunk.js": "/homepage/static/js/2.acb55509.chunk.js",
+    "static/js/2.acb55509.chunk.js.map": "/homepage/static/js/2.acb55509.chunk.js.map",
     "index.html": "/homepage/index.html",
-    "static/js/2.7ff95781.chunk.js.LICENSE.txt": "/homepage/static/js/2.7ff95781.chunk.js.LICENSE.txt",
-    "static/media/dakotamaddenfong_resume.b64abce8.pdf": "/homepage/static/media/dakotamaddenfong_resume.b64abce8.pdf"
+    "static/js/2.acb55509.chunk.js.LICENSE.txt": "/homepage/static/js/2.acb55509.chunk.js.LICENSE.txt",
+    "static/media/dakotamaddenfong_resume.b64abce8.pdf": "/homepage/static/media/dakotamaddenfong_resume.b64abce8.pdf",
+    "static/media/ds.496e572a.png": "/homepage/static/media/ds.496e572a.png",
+    "static/media/immunity.d92a1d88.png": "/homepage/static/media/immunity.d92a1d88.png",
+    "static/media/js.cae65a84.png": "/homepage/static/media/js.cae65a84.png",
+    "static/media/mc.4d9fb16a.png": "/homepage/static/media/mc.4d9fb16a.png",
+    "static/media/mtg.21dfb186.png": "/homepage/static/media/mtg.21dfb186.png",
+    "static/media/mtgcr.cfdd667f.png": "/homepage/static/media/mtgcr.cfdd667f.png",
+    "static/media/musiq.6c5a333c.png": "/homepage/static/media/musiq.6c5a333c.png",
+    "static/media/zps2020.7532ba99.png": "/homepage/static/media/zps2020.7532ba99.png"
   },
   "entrypoints": [
     "static/js/runtime-main.2ff6108e.js",
-    "static/js/2.7ff95781.chunk.js",
-    "static/js/main.fe61bfef.chunk.js"
+    "static/js/2.acb55509.chunk.js",
+    "static/js/main.58305059.chunk.js"
   ]
 }
