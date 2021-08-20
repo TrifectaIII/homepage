@@ -74,7 +74,11 @@ const PortfolioPage = (props: RouteComponentProps<{}>): JSX.Element => {
             >
                 Projects
             </Typography>
-            <Grid container spacing={3}>
+            <Grid
+                container
+                spacing={3}
+                justifyContent='center'
+            >
                 {projectCards}
             </Grid>
             <Typography
@@ -83,7 +87,11 @@ const PortfolioPage = (props: RouteComponentProps<{}>): JSX.Element => {
             >
                 Tools
             </Typography>
-            <Grid container spacing={3}>
+            <Grid
+                container
+                spacing={3}
+                justifyContent='center'
+            >
                 {toolCards}
             </Grid>
         </Box>
