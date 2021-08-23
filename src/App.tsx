@@ -1,9 +1,4 @@
-import React from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-} from 'react-router-dom';
+import React, {useRef} from 'react';
 
 import {
     Container,
@@ -14,8 +9,6 @@ import {
 } from '@material-ui/core';
 
 import Main from './pages/MainPage';
-import NotFound from './pages/NotFoundPage';
-import Portfolio from './pages/PortfolioPage';
 import Header from './components/Header';
 import MenuDrawer from './components/MenuDrawer';
 import {useAppSelector} from './state/hooks';
@@ -55,6 +48,33 @@ const App = (): JSX.Element => {
     const darkTheme = createTheme(darkThemeOptions);
     const theme = darkMode ? darkTheme : lightTheme;
 
+    // function for scrolling to the top of the page
+    const scrollToTop = () => {
+
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
+
+    };
+
+    // Ref for portfolio scrolling
+    const portfolioRef = useRef<null | HTMLElement>(null);
+
+    // function to handle scrollin to portfolio
+    const scrolltoPortfolio = () => {
+
+        if (portfolioRef.current) {
+
+            portfolioRef.current.scrollIntoView({
+                behavior: 'smooth',
+            });
+
+        }
+
+    };
+
     return (
         // provider theme
         <ThemeProvider theme={theme}>
@@ -62,32 +82,20 @@ const App = (): JSX.Element => {
             {/* normalize css */}
             <CssBaseline />
 
-            <Router>
-                {/* include header and menu on every page */}
-                <Header />
-                <MenuDrawer />
-
-                {/* route based on url */}
-                <Container>
-                    <Switch>
-                        {/* main page */}
-                        <Route
-                            exact path='/'
-                            component={Main}
-                        />
-                        <Route
-                            exact path='/'
-                            component={Main}
-                        />
-                        <Route
-                            exact path='/portfolio'
-                            component={Portfolio}
-                        />
-                        {/* default to 404 */}
-                        <Route component={NotFound} />
-                    </Switch>
-                </Container>
-            </Router>
+            <Header
+                scrollToTop={scrollToTop}
+                scrollToPortfolio={scrolltoPortfolio}
+            />
+            <MenuDrawer
+                scrollToTop={scrollToTop}
+                scrollToPortfolio={scrolltoPortfolio}
+            />
+            <Container>
+                <Main
+                    portfolioRef={portfolioRef}
+                    scrollToPortfolio={scrolltoPortfolio}
+                />
+            </Container>
         </ThemeProvider>
     );
 

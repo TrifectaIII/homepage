@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 
 import {
     Box,
@@ -8,15 +7,13 @@ import {
     ListItem,
     ListItemIcon,
     ListItemText,
-    Divider,
     makeStyles,
 } from '@material-ui/core';
 import {
-    ArrowRightAlt as InnerIcon,
+    FolderOpen,
     Home,
 } from '@material-ui/icons';
 
-import {navMap} from '../Navigation';
 import {MobileOnly} from './helpers';
 import {
     useAppSelector,
@@ -48,79 +45,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // drawer for navigation on mobile view
-const MenuDrawer = (props: {}): JSX.Element => {
+const MenuDrawer = (props: {
+    scrollToTop: () => void,
+    scrollToPortfolio: () => void,
+}): JSX.Element => {
 
     const classes = useStyles();
 
     const dispatch = useAppDispatch();
 
     const open = useAppSelector(selectMenuDrawerOpen);
-
-    // Generate navitems jsx from navmap
-    const navItems: JSX.Element[] = [];
-    Object.entries(navMap).
-        forEach(([name, point], index) => {
-
-            if ('route' in point) {
-
-                navItems.push(<Link
-                    to={point.route}
-                    key={name}
-                    className={classes.linkText}
-                    onClick={() => dispatch(closeMenuDrawer())}
-                >
-                    <ListItem>
-                        <ListItemIcon>
-                            <point.icon />
-                        </ListItemIcon>
-                        <ListItemText primary={name} />
-                    </ListItem>
-                </Link>);
-
-            } else {
-
-                navItems.push(<ListItem
-                    key={name}
-                    className={classes.inactive}
-                >
-                    <ListItemIcon className={classes.inactive}>
-                        <point.icon />
-                    </ListItemIcon>
-                    <ListItemText primary={name} />
-                </ListItem>);
-
-                Object.entries(point.children).
-                    forEach(([cName, cPoint]) => {
-
-                        navItems.push(<Link
-                            to={cPoint.route}
-                            key={cName}
-                            className={classes.linkText}
-                            onClick={() => dispatch(closeMenuDrawer())}
-                        >
-                            <ListItem>
-                                <ListItemIcon>
-                                    <InnerIcon className={classes.hidden}/>
-                                </ListItemIcon>
-                                <ListItemIcon>
-                                    <cPoint.icon />
-                                </ListItemIcon>
-                                <ListItemText primary={cName} />
-                            </ListItem>
-                        </Link>);
-
-                    });
-
-            }
-
-            // add a divider it its not the last point
-            if (index < Object.keys(navMap).length - 1) {
-
-                navItems.push(<Divider key={`div${index}`} />);
-
-            }
-
-        });
 
     return (
         <MobileOnly>
@@ -133,19 +67,32 @@ const MenuDrawer = (props: {}): JSX.Element => {
                 <Box className={classes.root}>
                     <List>
                         {/* home item */}
-                        <Link
-                            to='/'
+                        <div
                             className={classes.linkText}
                             onClick={() => dispatch(closeMenuDrawer())}
                         >
-                            <ListItem>
+                            <ListItem
+                                onClick={props.scrollToTop}
+                            >
                                 <ListItemIcon>
                                     <Home />
                                 </ListItemIcon>
                                 <ListItemText primary='Home' />
                             </ListItem>
-                        </Link>
-                        {navItems}
+                        </div>
+                        <div
+                            className={classes.linkText}
+                            onClick={() => dispatch(closeMenuDrawer())}
+                        >
+                            <ListItem
+                                onClick={props.scrollToPortfolio}
+                            >
+                                <ListItemIcon>
+                                    <FolderOpen />
+                                </ListItemIcon>
+                                <ListItemText primary='Portfolio' />
+                            </ListItem>
+                        </div>
                     </List>
                 </Box>
             </SwipeableDrawer>

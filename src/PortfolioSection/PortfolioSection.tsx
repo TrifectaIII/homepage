@@ -1,10 +1,6 @@
 import React from 'react';
-import {
-    RouteComponentProps,
-} from 'react-router-dom';
 
 import {
-    Box,
     Typography,
     Grid,
     makeStyles,
@@ -16,17 +12,19 @@ import tools from '../data/tools.json';
 import projects from '../data/projects.json';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
+    header: {
         marginTop: '3rem',
     },
     subheader: {
         marginTop: '3rem',
-        marginBottom: '3rem',
+        marginBottom: '1.5rem',
     },
 }));
 
-// Portfolio page showing off other projects
-const PortfolioPage = (props: RouteComponentProps<{}>): JSX.Element => {
+// Portfolio section showing off other projects
+const PortfolioSection = (props: {
+    portfolioRef: React.MutableRefObject<HTMLElement | null>,
+}): JSX.Element => {
 
     const classes = useStyles();
 
@@ -59,17 +57,16 @@ const PortfolioPage = (props: RouteComponentProps<{}>): JSX.Element => {
     }
 
     return (
-        <Box
-            alignItems='center'
-            display='flex'
-            flexDirection='column'
-            className={classes.root}
-        >
-            <Typography variant='h2'>
+        <>
+            <Typography
+                variant='h3'
+                ref={props.portfolioRef}
+                className={classes.header}
+            >
                 Portfolio
             </Typography>
             <Typography
-                variant='h3'
+                variant='h4'
                 className={classes.subheader}
             >
                 Projects
@@ -82,7 +79,7 @@ const PortfolioPage = (props: RouteComponentProps<{}>): JSX.Element => {
                 {projectCards}
             </Grid>
             <Typography
-                variant='h3'
+                variant='h4'
                 className={classes.subheader}
             >
                 Tools
@@ -94,9 +91,9 @@ const PortfolioPage = (props: RouteComponentProps<{}>): JSX.Element => {
             >
                 {toolCards}
             </Grid>
-        </Box>
+        </>
     );
 
 };
 
-export default PortfolioPage;
+export default PortfolioSection;

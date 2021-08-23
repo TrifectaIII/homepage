@@ -1,7 +1,4 @@
 import React from 'react';
-import {
-    RouteComponentProps,
-} from 'react-router-dom';
 
 import {
     Box,
@@ -12,20 +9,15 @@ import {
     makeStyles,
 } from '@material-ui/core';
 import {
-    MailOutline,
-    CallOutlined,
     FolderOpen,
     InsertDriveFileOutlined,
     GitHub,
 } from '@material-ui/icons';
 
-import {
-    useAppSelector,
-} from '../state/hooks';
-import {
-    selectDarkMode,
-} from '../state/globalSlice';
-import CopyButton from '../components/CopyButton';
+import ContactSection from '../PortfolioSection/ContactSection';
+import PortfolioSection from '../PortfolioSection/PortfolioSection';
+import general from '../data/general.json';
+import resume from '../tex/dakotamaddenfong_resume.pdf';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     mainbuttons: {
         marginTop: '3rem',
     },
-    contactheader: {
+    sectionheader: {
         marginTop: '2rem',
     },
     contactbuttons: {
@@ -50,18 +42,19 @@ const useStyles = makeStyles((theme) => ({
     icon: {
         marginRight: '0.5rem',
     },
+    subheader: {
+        marginTop: '3rem',
+        marginBottom: '1.5rem',
+    },
 }));
 
-import general from '../data/general.json';
-import resume from '../tex/dakotamaddenfong_resume.pdf';
-
 // main index page for empty route
-const MainPage = (props: RouteComponentProps<{}>): JSX.Element => {
+const MainPage = (props: {
+    portfolioRef: React.MutableRefObject<HTMLElement | null>,
+    scrollToPortfolio: () => void,
+}): JSX.Element => {
 
     const classes = useStyles();
-
-    // access dark mode info
-    const darkMode = useAppSelector(selectDarkMode);
 
     return (
         <Box
@@ -102,7 +95,7 @@ const MainPage = (props: RouteComponentProps<{}>): JSX.Element => {
                     <InsertDriveFileOutlined className={classes.icon} /> Resume
                 </Button>
                 <Button
-                    onClick={() => props.history.push('/portfolio')}
+                    onClick={props.scrollToPortfolio}
                     color='secondary'
                 >
                     <FolderOpen className={classes.icon} />  Portfolio
@@ -114,27 +107,11 @@ const MainPage = (props: RouteComponentProps<{}>): JSX.Element => {
                     <GitHub className={classes.icon} />  GitHub
                 </Button>
             </ButtonGroup>
-            <Typography
-                variant='h3'
-                className={classes.contactheader}
-            >
-                Contact Info
-            </Typography>
-            <ButtonGroup
-                orientation='vertical'
-                className={classes.contactbuttons}
-                variant='text'
-                color={darkMode ? 'secondary' : 'primary'}
-            >
-                <CopyButton
-                    icon={MailOutline}
-                    contents='maddenfong@gmail.com'
-                />
-                <CopyButton
-                    icon={CallOutlined}
-                    contents='+1 415 810 0334'
-                />
-            </ButtonGroup>
+
+            <ContactSection />
+
+            <PortfolioSection portfolioRef={props.portfolioRef} />
+
         </Box>
     );
 
