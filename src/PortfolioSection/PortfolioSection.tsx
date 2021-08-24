@@ -13,7 +13,7 @@ import projects from '../data/projects.json';
 
 const useStyles = makeStyles((theme) => ({
     header: {
-        marginTop: '3rem',
+        paddingTop: '3rem',
     },
     subheader: {
         marginTop: '3rem',

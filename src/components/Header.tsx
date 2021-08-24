@@ -62,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
 const Header = (props: {
     scrollToTop: () => void,
     scrollToPortfolio: () => void,
+    barRef: React.MutableRefObject<HTMLElement | null>,
 }): JSX.Element => {
 
     const classes = useStyles();
@@ -76,6 +77,7 @@ const Header = (props: {
             <AppBar
                 position='fixed'
                 className={classes.root}
+                ref={props.barRef}
             >
                 <Toolbar>
 

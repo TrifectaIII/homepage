@@ -48,6 +48,12 @@ const App = (): JSX.Element => {
     const darkTheme = createTheme(darkThemeOptions);
     const theme = darkMode ? darkTheme : lightTheme;
 
+    // ref for top appbar, used to calculate scroll offsets
+    const barRef = useRef<null | HTMLElement>(null);
+
+    // Ref for portfolio scrolling
+    const portfolioRef = useRef<null | HTMLElement>(null);
+
     // function for scrolling to the top of the page
     const scrollToTop = () => {
 
@@ -59,19 +65,16 @@ const App = (): JSX.Element => {
 
     };
 
-    // Ref for portfolio scrolling
-    const portfolioRef = useRef<null | HTMLElement>(null);
-
     // function to handle scrollin to portfolio
     const scrolltoPortfolio = () => {
 
-        if (portfolioRef.current) {
-
-            portfolioRef.current.scrollIntoView({
-                behavior: 'smooth',
-            });
-
-        }
+        const distance = portfolioRef.current?.getBoundingClientRect().top || 0;
+        const barOffset = barRef.current?.offsetHeight || 0;
+        window.scrollBy({
+            top: distance - barOffset,
+            left: 0,
+            behavior: 'smooth',
+        });
 
     };
 
@@ -85,6 +88,7 @@ const App = (): JSX.Element => {
             <Header
                 scrollToTop={scrollToTop}
                 scrollToPortfolio={scrolltoPortfolio}
+                barRef={barRef}
             />
             <MenuDrawer
                 scrollToTop={scrollToTop}
