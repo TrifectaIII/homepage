@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import {
     FolderOpen,
-    Home,
+    VerticalAlignTop,
 } from '@material-ui/icons';
 
 import {MobileOnly} from './helpers';
@@ -75,9 +75,9 @@ const MenuDrawer = (props: {
                                 onClick={props.scrollToTop}
                             >
                                 <ListItemIcon>
-                                    <Home />
+                                    <VerticalAlignTop />
                                 </ListItemIcon>
-                                <ListItemText primary='Home' />
+                                <ListItemText primary='Top' />
                             </ListItem>
                         </div>
                         <div

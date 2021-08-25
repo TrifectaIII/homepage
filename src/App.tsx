@@ -6,6 +6,7 @@ import {
     ThemeProvider,
     createTheme,
     ThemeOptions,
+    responsiveFontSizes,
 } from '@material-ui/core';
 
 import Main from './pages/MainPage';
@@ -37,6 +38,9 @@ const darkThemeOptions: ThemeOptions = {
             main: '#e65100',
         },
     },
+    typography: {
+
+    },
 };
 
 // Main App component
@@ -46,7 +50,7 @@ const App = (): JSX.Element => {
     const darkMode = useAppSelector(selectDarkMode);
     const lightTheme = createTheme(lightThemeOptions);
     const darkTheme = createTheme(darkThemeOptions);
-    const theme = darkMode ? darkTheme : lightTheme;
+    const theme = responsiveFontSizes(darkMode ? darkTheme : lightTheme);
 
     // ref for top appbar, used to calculate scroll offsets
     const barRef = useRef<null | HTMLElement>(null);

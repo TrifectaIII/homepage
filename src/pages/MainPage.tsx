@@ -77,6 +77,7 @@ const MainPage = (props: {
             <Typography
                 variant='body1'
                 className={classes.text}
+                align='center'
             >
                 A coder living and working in San Francisco, CA.
                 I focus on software and web development.
