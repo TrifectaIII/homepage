@@ -14,7 +14,7 @@ import CopyButton from '../components/CopyButton';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        marginTop: '3rem',
+        paddingTop: '3rem',
     },
     contactbuttons: {
         marginTop: '1rem',
@@ -37,6 +37,7 @@ const ContactSection = (): JSX.Element => {
             <Typography
                 variant='h3'
                 className={classes.root}
+                id='contact'
             >
                 Contact Info
             </Typography>

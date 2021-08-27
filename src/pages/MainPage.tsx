@@ -50,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
 
 // main index page for empty route
 const MainPage = (props: {
-    portfolioRef: React.MutableRefObject<HTMLElement | null>,
     scrollToPortfolio: () => void,
 }): JSX.Element => {
 
@@ -111,7 +110,7 @@ const MainPage = (props: {
 
             <ContactSection />
 
-            <PortfolioSection portfolioRef={props.portfolioRef} />
+            <PortfolioSection />
 
         </Box>
     );

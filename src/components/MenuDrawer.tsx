@@ -10,10 +10,10 @@ import {
     makeStyles,
 } from '@material-ui/core';
 import {
-    FolderOpen,
-    VerticalAlignTop,
+    VerticalAlignTop as TopIcon,
 } from '@material-ui/icons';
 
+import {NavPoint, navMap} from '../Navigation';
 import {MobileOnly} from './helpers';
 import {
     useAppSelector,
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 // drawer for navigation on mobile view
 const MenuDrawer = (props: {
     scrollToTop: () => void,
-    scrollToPortfolio: () => void,
+    scrollToElement: (selector: string) => void,
 }): JSX.Element => {
 
     const classes = useStyles();
@@ -55,6 +55,22 @@ const MenuDrawer = (props: {
     const dispatch = useAppDispatch();
 
     const open = useAppSelector(selectMenuDrawerOpen);
+
+    // generate jumplinks for navitems
+    const navItems = navMap.map((point: NavPoint): JSX.Element => <div
+        className={classes.linkText}
+        onClick={() => dispatch(closeMenuDrawer())}
+        key={point.name}
+    >
+        <ListItem
+            onClick={() => props.scrollToElement(point.jumpSelector)}
+        >
+            <ListItemIcon>
+                <point.icon />
+            </ListItemIcon>
+            <ListItemText primary={point.name} />
+        </ListItem>
+    </div>);
 
     return (
         <MobileOnly>
@@ -75,24 +91,12 @@ const MenuDrawer = (props: {
                                 onClick={props.scrollToTop}
                             >
                                 <ListItemIcon>
-                                    <VerticalAlignTop />
+                                    <TopIcon />
                                 </ListItemIcon>
                                 <ListItemText primary='Top' />
                             </ListItem>
                         </div>
-                        <div
-                            className={classes.linkText}
-                            onClick={() => dispatch(closeMenuDrawer())}
-                        >
-                            <ListItem
-                                onClick={props.scrollToPortfolio}
-                            >
-                                <ListItemIcon>
-                                    <FolderOpen />
-                                </ListItemIcon>
-                                <ListItemText primary='Portfolio' />
-                            </ListItem>
-                        </div>
+                        {navItems}
                     </List>
                 </Box>
             </SwipeableDrawer>

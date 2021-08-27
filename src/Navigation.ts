@@ -1,29 +1,29 @@
 import {SvgIconTypeMap} from '@material-ui/core';
 import {OverridableComponent} from '@material-ui/core/OverridableComponent';
 import {
-    FolderOpen,
+    Call as ContactIcon,
+    FolderOpen as PortfolioIcon,
 } from '@material-ui/icons';
 
-// Type to determine navigation options on header
-export interface NavMapType {
-    [key: string]: {
-        icon: OverridableComponent<SvgIconTypeMap<{}, 'svg'>>,
-        route: string,
-    } | {
-        icon: OverridableComponent<SvgIconTypeMap<{}, 'svg'>>,
-        children: {
-            [key: string]:{
-                icon: OverridableComponent<SvgIconTypeMap<{}, 'svg'>>,
-                route: string,
-            },
-        },
-    };
+export interface NavPoint {
+    name: string,
+    icon: OverridableComponent<SvgIconTypeMap<{}, 'svg'>>,
+    jumpSelector: string,
 }
 
+// Type to determine navigation options on header
+export type NavMapType = NavPoint[];
+
 // navmap for this app
-export const navMap: NavMapType = {
-    'Portfolio': {
-        icon: FolderOpen,
-        route: '/portfolio',
+export const navMap: NavMapType = [
+    {
+        name: 'Contact',
+        icon: ContactIcon,
+        jumpSelector: '#contact',
     },
-};
+    {
+        name: 'Portfolio',
+        icon: PortfolioIcon,
+        jumpSelector: '#portfolio',
+    },
+];

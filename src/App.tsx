@@ -55,9 +55,6 @@ const App = (): JSX.Element => {
     // ref for top appbar, used to calculate scroll offsets
     const barRef = useRef<null | HTMLElement>(null);
 
-    // Ref for portfolio scrolling
-    const portfolioRef = useRef<null | HTMLElement>(null);
-
     // function for scrolling to the top of the page
     const scrollToTop = () => {
 
@@ -69,16 +66,24 @@ const App = (): JSX.Element => {
 
     };
 
-    // function to handle scrollin to portfolio
-    const scrolltoPortfolio = () => {
+    // function to scroll to a specific selector (used by navmap code)
+    const scrollToElement = (selector: string) => {
 
-        const distance = portfolioRef.current?.getBoundingClientRect().top || 0;
+        const jumpElement: HTMLElement | null = document.querySelector(selector);
+        const distance = jumpElement?.getBoundingClientRect().top || 0;
         const barOffset = barRef.current?.offsetHeight || 0;
         window.scrollBy({
             top: distance - barOffset,
             left: 0,
             behavior: 'smooth',
         });
+
+    };
+
+    // function to handle scrollin to portfolio
+    const scrollToPortfolio = () => {
+
+        scrollToElement('#portfolio');
 
     };
 
@@ -91,17 +96,16 @@ const App = (): JSX.Element => {
 
             <Header
                 scrollToTop={scrollToTop}
-                scrollToPortfolio={scrolltoPortfolio}
+                scrollToElement={scrollToElement}
                 barRef={barRef}
             />
             <MenuDrawer
                 scrollToTop={scrollToTop}
-                scrollToPortfolio={scrolltoPortfolio}
+                scrollToElement={scrollToElement}
             />
             <Container>
                 <Main
-                    portfolioRef={portfolioRef}
-                    scrollToPortfolio={scrolltoPortfolio}
+                    scrollToPortfolio={scrollToPortfolio}
                 />
             </Container>
         </ThemeProvider>

@@ -14,10 +14,10 @@ import {
     Brightness3 as MoonIcon,
     Brightness7 as SunIcon,
     Menu as MenuIcon,
-    FolderOpen,
 } from '@material-ui/icons';
 import clsx from 'clsx';
 
+import {NavPoint, navMap} from '../Navigation';
 import {
     MobileOnly,
     DesktopOnly,
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
 // Main page header for navigation, global state
 const Header = (props: {
     scrollToTop: () => void,
-    scrollToPortfolio: () => void,
+    scrollToElement: (selector: string) => void,
     barRef: React.MutableRefObject<HTMLElement | null>,
 }): JSX.Element => {
 
@@ -71,6 +71,25 @@ const Header = (props: {
     const darkMode = useAppSelector(selectDarkMode);
 
     const DarkModeIcon = darkMode ? SunIcon : MoonIcon;
+
+    // generate jumplinks for navitems
+    const navItems = navMap.map((point: NavPoint): JSX.Element => <div
+        className={clsx(
+            classes.white,
+            classes.noDec,
+        )}
+        key={point.name}
+    >
+        <Button
+            className={classes.navButton}
+            onClick={() => props.scrollToElement(point.jumpSelector)}
+        >
+            <point.icon className={classes.spaceRight} />
+            <Typography variant='body1'>
+                {point.name}
+            </Typography>
+        </Button>
+    </div>);
 
     return (
         <>
@@ -113,22 +132,7 @@ const Header = (props: {
                         <Box
                             display='flex'
                         >
-                            <div
-                                className={clsx(
-                                    classes.white,
-                                    classes.noDec,
-                                )}
-                            >
-                                <Button
-                                    className={classes.navButton}
-                                    onClick={props.scrollToPortfolio}
-                                >
-                                    <FolderOpen className={classes.spaceRight} />
-                                    <Typography variant='body1'>
-                                        Portfolio
-                                    </Typography>
-                                </Button>
-                            </div>
+                            {navItems}
                         </Box>
                     </DesktopOnly>
 

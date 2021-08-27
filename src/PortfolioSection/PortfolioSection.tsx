@@ -22,9 +22,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // Portfolio section showing off other projects
-const PortfolioSection = (props: {
-    portfolioRef: React.MutableRefObject<HTMLElement | null>,
-}): JSX.Element => {
+const PortfolioSection = (props: {}): JSX.Element => {
 
     const classes = useStyles();
 
@@ -60,8 +58,8 @@ const PortfolioSection = (props: {
         <>
             <Typography
                 variant='h3'
-                ref={props.portfolioRef}
                 className={classes.header}
+                id='portfolio'
             >
                 Portfolio
             </Typography>
