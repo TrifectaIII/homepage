@@ -37,7 +37,6 @@ const CopyButton = (props: {
 
     const tooltipTimer = useRef<number | null>(0);
     const [tooltipOpen, setTooltipOpen] = useState(false);
-    const [copySucceed, setCopySucceed] = useState(true);
 
     const displayTooltip = () => {
 
@@ -57,25 +56,15 @@ const CopyButton = (props: {
     const handleCopy = () => {
 
         navigator.clipboard.writeText(props.contents).then(
-            () => {
-
-                setCopySucceed(true);
-                displayTooltip();
-
-            },
-            () => {
-
-                setCopySucceed(false);
-                displayTooltip();
-
-            },
+            displayTooltip,
+            displayTooltip,
         );
 
     };
 
     return (
         <Tooltip
-            title={copySucceed ? 'Copied!' : 'Copy failed, please reload page and try again.'}
+            title='Copied!'
             arrow
             open={tooltipOpen}
         >

@@ -50,10 +50,12 @@ const ContactSection = (): JSX.Element => {
                 <CopyButton
                     icon={MailOutline}
                     contents='maddenfong@gmail.com'
+                    size='large'
                 />
                 <CopyButton
                     icon={CallOutlined}
                     contents='+1 415 810 0334'
+                    size='large'
                 />
             </ButtonGroup>
         </>
